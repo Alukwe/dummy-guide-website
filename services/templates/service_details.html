@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Details about {{service.name}} {%endblock %}</title>
+</head>
+<body>
+<h2>{{service.name}}</h2>
+<p>{{service.price}}</p>
+<p>{{service.description}}</p>
+{% for image in images %}
+<img src="{{ image.image.url }}" alt="{{service.name}} image">
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var typingTimer;
+            var doneTypingInterval = 500;
+            $("#search-input").on("keyup", function(){
+                clearTimeout(typingTimer);
+                var query = $(this).val();
+                if (query.length === 0){
+                    $("#livesearch").empty();
+                    return;
+                }
+                typingTimer = setTimeout(function(){
+                    $.ajax({
+                        url:"{% url 'search'  %}?q=" +query,
+                        type: "GET",
+                        success: function(data){
+                            $("#livesearch").html(data);
+                        }
+                    });
+             }, doneTypingInterval);
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" id="search-input" size="30">
+    </form>
+    <div id="livesearch">
+        {% if results %}
+        <ul>
+            {% for service in results %}
+            <li><a href="{% url 'service-detail' service.id %}">{{service.name}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No results found</p>
+        {% endif %}
+    </div>
+</body>
+</html>

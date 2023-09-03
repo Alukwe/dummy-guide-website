@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Services offered By TechFutures: </h1>
+<ul>
+    {% for a in services %}
+    <li><a href="{% url 'service-detail' a.id %}">{{a.name}} (ID: {{a.id}})</a></li>
+    {% endfor %}
+</ul>
+{% for service in services %}
+<h1>{{ service.name }}</h1>
+<p> Price: {{service.price}}</p>
+<p>Category: {{service.category.name}}</p>
+<p>Description: {{service.description}}</p>
+{%if service.subcategory %}
+<p>Subcategory: {{service.subcategory.name}}</p>
+{% endif %}
+{% if image %}
+image: <img src="{{services.image.url}}" alt="Service Image">
+{% else %}
+<p>No image available for this service.</p>
+{% endif %}
+{% endfor %}
+<a href="{% url 'service_form' %}">Create New Service</a>
+<a href="{% url 'search' %}">Search For A Service</a>
+
+
+<h1>Search Result for "{{query}}"</h1>
+<ul>
+    {% for service in results %}
+    <li>{{product.name}}</li>
+    {% empty %}
+    <li>No results found.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

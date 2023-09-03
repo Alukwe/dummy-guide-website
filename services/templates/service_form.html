@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form.as_p}}
+    {{form.category.label_tag}}
+    {{form.category}}
+    {{ form.subcategory.label_tag}}
+    {{form.subcategory}}
+    {{formset.management_form}}
+
+    {% for form in formset %}
+    {{ form.as_table}}
+    {% endfor %}
+    <button type="submit">Create Service</button>
+</form>
+</body>
+</html>
