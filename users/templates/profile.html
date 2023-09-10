@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>User Profile</h1>
+{% if user_profile.profilepicture%}
+<img src="{{user_profile.profilepicture.picture.url}}" alt="{{user.username}}">
+{% else %}
+<!--Defualt image -->
+<img src="{% static 'path/to/default/image.jpg'%}" alt="Default Image">
+{% endif %}
+<h2>User Information</h2>
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+
+<h2>User Profile Details</h2>
+<p>First Name: {{user.first_name}}</p>
+<p>Last Name: {{user.last_name}}</p>
+<p>Phone Number: {{user.phone_number}}</p>
+<p>Password: {{user.password}}</p>
+
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{profile_form.as_p}}
+</form>
+
+<a href="{% url 'profile' %}">Edit Profile</a>
+</body>
+</html>

@@ -4,7 +4,8 @@ from django.db import models
 
 class Categories(models.Model):
     name = models.CharField(max_length=50, db_index=True)
-    # parent_category = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    category_description = models.CharField(max_length=200, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -30,6 +31,7 @@ class Services(models.Model):
 
 class ServiceImages(models.Model):
     service = models.ForeignKey(Services, on_delete=models.CASCADE)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='media/service_images/')
 
 # class Booking(models.Model):

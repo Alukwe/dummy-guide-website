@@ -8,8 +8,6 @@
 <form method="post" enctype="multipart/form-data">
     {%csrf_token%}
     {{form.as_p}}
-    {{form.category.label_tag}}
-    {{form.category}}
     {{ form.subcategory.label_tag}}
     {{form.subcategory}}
     {{formset.management_form}}

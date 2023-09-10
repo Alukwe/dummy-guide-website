@@ -6,9 +6,9 @@
 </head>
 <body>
 {% for x in categories %}
-<a href="{% url 'service_by_category' x.id %}">
+<a href="{% url 'services:service_by_category' x.id %}">
     <p>{{x.name}}</p>
 </a>
-{% endfor%}
+{% endfor %}
 </body>
 </html>

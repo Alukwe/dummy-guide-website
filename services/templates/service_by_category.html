@@ -6,7 +6,7 @@
 </head>
 <body>
 {% for a in services %}
-<a href="{% url 'service-detail' a.id %}"><p>{{a.name}}</p></a>
+<a href="{% url 'services:service-detail' a.id %}"><p>{{a.name}}</p></a>
 {% endfor %}
 </body>
 </html>
